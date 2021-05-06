@@ -1,0 +1,45 @@
+.logo {
+  width: 200px;
+  transition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+  @apply h-full p-0 flex justify-center items-center;
+
+  &.--min {
+    width: 80px;
+  }
+}
+
+.custom-layout {
+  height: calc(100vh - var(--height-header));
+}
+
+.custom-sidebar {
+  @apply bg-white;
+
+  .ant-menu-item {
+    @apply bg-white;
+
+    &:hover {
+      @apply bg-primary bg-opacity-10;
+    }
+
+    &.ant-menu-item-selected::after {
+      transform: scaleY(1) !important;
+      opacity: 1!important;
+    }
+  }
+}
+
+.custom-content {
+  @apply flex flex-col;
+
+  .custom-footer {
+    height: var(--height-header);
+    @apply bg-primary text-white w-full mt-auto;
+  }
+}
+
+.custom-router-container {
+  @apply p-5 pt-6;
+}
+
+

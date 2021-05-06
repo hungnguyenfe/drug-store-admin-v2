@@ -1,0 +1,47 @@
+//@import 'tailwindcss/base';
+//@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* You can add global styles to this file, and also import other style files */
+
+.custom-ant-card {
+@apply rounded-xl;
+
+  &.--with-shadow {
+    @apply shadow-lg;
+  }
+
+  &.--with-tittle {
+    @apply relative pt-3;
+
+    .custom-card-title {
+      @apply absolute bg-primary w-auto p-2 rounded-md -top-4 left-3 shadow-lg;
+       > * {
+         @apply mb-0 text-white;
+       }
+    }
+  }
+}
+
+.custom-ant-form {
+  .ant-form-item {
+  @apply mb-4;
+
+    &-label {
+    @apply p-0;
+      line-height: 29px;
+    }
+
+    &-with-help {
+    @apply mb-4;
+    }
+
+    .ant-input-affix-wrapper {
+    @apply rounded-md;
+    }
+
+
+    &:last-child {
+    @apply mb-0;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<div class="w-screen h-screen flex justify-center items-center bg-img">
+  <nz-card class="custom-ant-card">
+    <div class="w-32 h-32 mx-auto mb-10">
+      <img class="w-full h-full block" src="../../../../assets/images/logo.png" alt="Logo site">
+    </div>
+
+    <form nz-form class="custom-ant-form" [formGroup]="loginForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="username" nzRequired>Tên đăng nhập</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Bạn chưa điền tên đăng nhập">
+          <nz-input-group nzPrefixIcon="user">
+            <input nz-input name="username" formControlName="username" type="text" id="username">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="password" nzRequired>Mật khẩu</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Bạn chưa điền mật khẩu">
+          <nz-input-group nzPrefixIcon="lock">
+            <input nz-input name="password" formControlName="password" type="password" id="password">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <button class="rounded-md" nz-button nzType="primary" nzBlock [nzLoading]="loading$ | async">Đăng nhập</button>
+      </nz-form-item>
+    </form>
+
+    <a class="block mt-3" routerLink="/forgot-password">Quên mật khẩu?</a>
+  </nz-card>
+</div>

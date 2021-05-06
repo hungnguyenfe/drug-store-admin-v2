@@ -1,0 +1,20 @@
+
+// Custom Theming for NG-ZORRO
+// For more information: https://ng.ant.design/docs/customize-theme/en
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+// Override less variables to here
+// View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less
+:root {
+  --height-header: 64px;
+}
+
+body.fix-header {
+  padding-top: var(--height-header);
+}
+
+@primary-color: #003c6e;
+@info-color: #42baf9;
+@success-color: #41b883;
+@processing-color: lighten(@primary-color, 10);
+@error-color: @red-5;

@@ -1,0 +1,28 @@
+<nz-header class="bg-white shadow-lg p-0 fixed left-0 right-0 top-0 z-20 flex">
+  <div class="logo" [class.--min]="isCollapsed">
+    <img class="w-auto h-5/6 block" src="../../../../assets/images/logo.png" alt="Logo">
+  </div>
+  <div class="px-10">
+    <i class="cursor-pointer" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
+  </div>
+</nz-header>
+
+<nz-layout class="custom-layout">
+  <nz-sider class="custom-sidebar" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <ul nz-menu nzMode="inline" class="border-0">
+      <ng-container *ngFor="let item of menuItems">
+        <li nz-menu-item [routerLink]="item.path" [nzMatchRouter]="true" class="w-full outline-none">
+          <i nz-icon [nzType]="item.icon"></i>
+          <span>{{ item.label }}</span>
+        </li>
+      </ng-container>
+    </ul>
+  </nz-sider>
+
+  <nz-content class="custom-content">
+    <div class="custom-router-container">
+      <router-outlet></router-outlet>
+    </div>
+    <nz-footer class="custom-footer">Ant Design ©2020 Implement By Angular</nz-footer>
+  </nz-content>
+</nz-layout>

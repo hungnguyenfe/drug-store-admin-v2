@@ -1,0 +1,24 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": [],
+    "baseUrl": "./",
+    "paths": {
+      "@app-core/*": ["src/app/core/*"],
+      "@app-shared/*": ["src/app/shared/*"],
+      "@app-store/*": ["src/app/store/*"],
+      "@app-types/*": ["src/app/types/*"],
+      "@app-environments/*": ["src/environments/*"],
+      "@app/*": ["src/app/*"],
+    }
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}
