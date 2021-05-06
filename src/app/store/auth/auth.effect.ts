@@ -5,7 +5,7 @@ import { AppState } from '@app-store/state'
 import { Observable, of } from 'rxjs'
 import { Account, LoginPayload, LoginResponse } from '@app-types/auth.types'
 import { AuthActions, AuthActionTypes } from '@app-store/auth/auth.actions'
-import { catchError, delay, exhaustMap, finalize, map, mergeAll, tap } from 'rxjs/operators'
+import { catchError, exhaustMap, finalize, map, mergeAll, tap } from 'rxjs/operators'
 import { Injectable } from '@angular/core'
 import { MessageActions } from '@app-store/message/message.action'
 import { MessageVariant } from '@app-types/common.types'
@@ -53,7 +53,6 @@ export class AuthEffect {
     ofType(AuthActionTypes.EffectLogin),
     // Enabled loading
     tap(() => this.store.dispatch(AuthActions.SetLoading({loading: true}))),
-    delay(3000),
     // Excuse API
     exhaustMap(({data}) => this.authService.login(data).pipe(
       // Set token and Build account data
@@ -80,7 +79,7 @@ export class AuthEffect {
           type: 'error',
           message: error,
         }
-        return of(MessageActions.setMessageVariant({variant}))
+        return of(MessageActions.SetMessageVariant({variant}))
       }),
       // Turn off loading
       finalize(() => {

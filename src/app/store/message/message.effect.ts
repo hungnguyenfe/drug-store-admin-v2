@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators'
 @Injectable()
 export class MessageEffect {
   private readonly effectSetMessage$ = createEffect(() => this.actions$.pipe(
-    ofType(MessageActions.setMessageVariant),
+    ofType(MessageActions.SetMessageVariant),
     tap(({variant}) => {
       if (variant) {
         this.messageService.create(variant.type, variant.message)

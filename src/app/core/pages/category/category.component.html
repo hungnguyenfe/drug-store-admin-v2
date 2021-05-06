@@ -1,9 +1,11 @@
 <nz-card class="custom-ant-card --with-shadow --with-tittle">
   <div class="custom-card-title">
-    <h4>Loại sản phẩm</h4>
+    <h4>Loại Sản Phẩm</h4>
   </div>
   <shop-data-table>
-    hello
+    {{ data$ | async }}
+    {{ loading$ | async }}
+    {{ total$ | async }}
   </shop-data-table>
 
 </nz-card>

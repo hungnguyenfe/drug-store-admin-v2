@@ -6,7 +6,7 @@ export enum MessageActionsTypes {
 }
 
 export const MessageActions = {
-  setMessageVariant: createAction(
+  SetMessageVariant: createAction(
     MessageActionsTypes.MessageSetVariant,
     props<{ variant: MessageVariant | null }>(),
   ),

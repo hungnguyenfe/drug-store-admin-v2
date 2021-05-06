@@ -5,6 +5,6 @@ import { MessageActions } from '@app-store/message/message.action'
 export const MessageReducer = (messageState: MessageState | undefined, action: Action) => {
   return createReducer(
     initMessageState,
-    on(MessageActions.setMessageVariant, (state, {variant}) => ({...state, variant})),
+    on(MessageActions.SetMessageVariant, (state, {variant}) => ({...state, variant})),
   )(messageState, action)
 }
