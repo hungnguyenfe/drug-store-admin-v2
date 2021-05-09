@@ -6,7 +6,7 @@ import { vi_VN } from 'ng-zorro-antd/i18n'
 
 import { AppComponent } from './app.component'
 import { BrowserModule } from '@angular/platform-browser'
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { StoreModule } from '@ngrx/store'
 import { AppRoutingModule } from '@app/app-routing.module'
@@ -27,6 +27,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzInputModule } from 'ng-zorro-antd/input'
 import { LoginComponent } from '@app/auth/pages/login/login.component'
 import { ReactiveFormsModule } from '@angular/forms'
+import { BaseInterceptor } from '@app/interceptor/base.interceptor'
 
 registerLocaleData(vi)
 
@@ -62,7 +63,10 @@ const antModules = [
     ]),
     ...antModules,
   ],
-  providers: [{provide: NZ_I18N, useValue: vi_VN}],
+  providers: [
+    {provide: NZ_I18N, useValue: vi_VN},
+    {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

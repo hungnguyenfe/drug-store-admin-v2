@@ -10,6 +10,6 @@ export enum CategoryActionTypes {
 
 export const CategoryActions = {
   EffectGetData: createAction(CategoryActionTypes.EffectGetData, props<{ params: Partial<TableParams>}>()),
-  SetDataResponse: createAction(CategoryActionTypes.SetDataResponse, props<{ data: Category[], total: number }>()),
+  SetDataResponse: createAction(CategoryActionTypes.SetDataResponse, props<{ data: Category[], count: number }>()),
   SetLoading: createAction(CategoryActionTypes.SetLoading, props<{ loading: boolean }>()),
 }

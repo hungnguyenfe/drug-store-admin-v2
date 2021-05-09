@@ -8,26 +8,28 @@ import { Category, CreateCategoryPayload, UpdateCategoryPayload } from '@app-typ
   providedIn: 'root',
 })
 export class CategoryService {
+  private endpoint: string
 
   constructor(
     private http: BaseHttpService,
   ) {
+    this.endpoint = 'categories'
   }
 
   getCategories(params: Partial<TableParams>): Observable<DataTableResponse<Category>> {
-    return this.http.get<DataTableResponse<Category>>('category', params)
+    return this.http.get<DataTableResponse<Category>>(this.endpoint, params)
   }
 
   createCategory(data: CreateCategoryPayload): Observable<Category> {
-    return this.http.post<CreateCategoryPayload, Category>('category', data)
+    return this.http.post<CreateCategoryPayload, Category>(this.endpoint, data)
   }
 
   updateCategory(id: string | number, data: UpdateCategoryPayload): Observable<Category> {
-    return this.http.put<CreateCategoryPayload, Category>('category', data)
+    return this.http.put<CreateCategoryPayload, Category>(this.endpoint, data)
   }
 
   delete(id: string | number): Observable<boolean> {
-    return this.http.delete<boolean>('category', {
+    return this.http.delete<boolean>(this.endpoint, {
       id,
     })
   }

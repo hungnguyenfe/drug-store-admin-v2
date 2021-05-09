@@ -10,10 +10,10 @@ export const CategoryReducer = [
     cloneState.loading = loading
     return {...state, ...{ category: cloneState }}
   }),
-  on(CategoryActions.SetDataResponse, (state: CoreState, {data, total}) => {
+  on(CategoryActions.SetDataResponse, (state: CoreState, {data, count}) => {
     const cloneState = cloneDeep(state.category) as CategoryState
     cloneState.data = data
-    cloneState.total = total
+    cloneState.count = count
     return {...state, ...{ category: cloneState }}
   }),
 ]

@@ -8,5 +8,6 @@ export const AuthReducer = (authState: AuthState | undefined, action: Action) =>
     on(AuthActions.SetAccount, (state, { account }) => ({ ...state, account })),
     on(AuthActions.SetLoading, (state, { loading }) => ({ ...state, loading })),
     on(AuthActions.SetLoggedStatus, (state, { isLogged }) => ({ ...state, isLogged })),
+    on(AuthActions.SetWorkspaceId, (state, { workspaceId }) => ({ ...state, workspaceId })),
   )(authState, action)
 }

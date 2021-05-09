@@ -8,6 +8,7 @@ export enum AuthActionTypes {
   SetLoading = '[Auth] Set loading status',
   SetAccount = '[Auth] Set account',
   SetLoggedStatus = '[Auth] Set logged status',
+  SetWorkSpaceId = '[Auth] Set workspace id',
 }
 
 export const AuthActions = {
@@ -17,4 +18,5 @@ export const AuthActions = {
   SetLoading: createAction(AuthActionTypes.SetLoading, props<{ loading: boolean }>()),
   SetLoggedStatus: createAction(AuthActionTypes.SetLoggedStatus, props<{ isLogged: boolean }>()),
   SetAccount: createAction(AuthActionTypes.SetAccount, props<{ account: Account | null }>()),
+  SetWorkspaceId: createAction(AuthActionTypes.SetWorkSpaceId, props<{ workspaceId: string | null }>()),
 }

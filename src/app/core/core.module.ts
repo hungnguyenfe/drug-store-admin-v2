@@ -6,7 +6,6 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { LayoutComponent } from './components/layout/layout.component'
-import { DataTableComponent } from './components/data-table/data-table.component'
 import { CategoryComponent } from './pages/category/category.component'
 import { NzCardModule } from 'ng-zorro-antd/card'
 import { NzTableModule } from 'ng-zorro-antd/table'
@@ -14,6 +13,10 @@ import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
 import { CORE_KEY, CoreReducer } from '@app-store/core/core.reducer'
 import { CategoryEffect } from '@app-store/core/category/category.effect'
+import { NzAvatarModule } from 'ng-zorro-antd/avatar'
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
+import { NzBadgeModule } from 'ng-zorro-antd/badge'
+import { NzButtonModule } from 'ng-zorro-antd/button'
 
 const antModules = [
   NzLayoutModule,
@@ -21,13 +24,16 @@ const antModules = [
   NzIconModule,
   NzCardModule,
   NzTableModule,
+  NzAvatarModule,
+  NzDropDownModule,
+  NzBadgeModule,
+  NzButtonModule,
 ]
 
 @NgModule({
   declarations: [
     DashboardComponent,
     LayoutComponent,
-    DataTableComponent,
     CategoryComponent,
   ],
   imports: [

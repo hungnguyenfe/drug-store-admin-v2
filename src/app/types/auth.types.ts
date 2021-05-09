@@ -1,6 +1,7 @@
 export interface Account {
   username: string
   email: string
+  exp: number
 }
 
 export interface LoginPayload {
@@ -10,7 +11,7 @@ export interface LoginPayload {
 
 export interface LoginResponse {
   token: string
-  workspaceId: string
+  work_space_id: string
 }
 
 export type LocalStorageData = LoginResponse

@@ -12,8 +12,8 @@ export const CategorySelectors = {
     coreStateSelector,
     (state: CoreState) => state.category.loading,
   ),
-  GetTotal: createSelector(
+  GetCount: createSelector(
     coreStateSelector,
-    (state: CoreState) => state.category.total,
+    (state: CoreState) => state.category.count,
   ),
 }

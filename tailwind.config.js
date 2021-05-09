@@ -14,6 +14,8 @@ module.exports = {
       extend: {
         colors: {
           primary: '#003c6e',
+          'darken-primary': '#003563',
+          'lighten-primary': '#005196',
           info: '#42baf9',
           success: '#41b883',
         }
@@ -21,6 +23,7 @@ module.exports = {
     },
     variants: {
       extend: {
-      },
+        backgroundColor: ['active', 'focus'],
+      }
     },
 };

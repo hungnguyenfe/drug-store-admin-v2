@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://1.1.1.1:8080/',
+  baseUrl: 'http://192.168.1.224:8000/',
+  versionAPI: 'v1',
 }
 
 /*

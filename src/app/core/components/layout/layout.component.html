@@ -1,28 +1,67 @@
 <nz-header class="bg-white shadow-lg p-0 fixed left-0 right-0 top-0 z-20 flex">
-  <div class="logo" [class.--min]="isCollapsed">
-    <img class="w-auto h-5/6 block" src="../../../../assets/images/logo.png" alt="Logo">
-  </div>
-  <div class="px-10">
-    <i class="cursor-pointer" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
-  </div>
+    <div class="custom-logo" [class.--min]="isCollapsed">
+        <img class="w-auto h-5/6 block" src="../../../../assets/images/logo.png" alt="Logo">
+    </div>
+    <div class="custom-header-navigation flex justify-between items-center px-10 w-full">
+        <i class="cursor-pointer" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+           (click)="isCollapsed = !isCollapsed"></i>
+
+        <ul class="list-none flex items-center justify-center mb-0 -mr-3">
+            <li>
+                <a class="custom-nav-icon">
+                    <nz-badge nzDot class="cursor-pointer">
+                        <i nz-icon nzType="mail" nzTheme="outline"></i>
+                    </nz-badge>
+                </a>
+            </li>
+            <li>
+                <a class="custom-nav-icon">
+                    <nz-badge nzDot class="cursor-pointer">
+                        <i nz-icon nzType="notification" nzTheme="outline"></i>
+                    </nz-badge>
+                </a>
+            </li>
+            <li>
+                <nz-avatar nz-dropdown
+                           nzTrigger="click"
+                           nzSize="large"
+                           nzText="Admin"
+                           class="cursor-pointer mx-3"
+                           [nzDropdownMenu]="dropdown">
+                </nz-avatar>
+                <nz-dropdown-menu #dropdown="nzDropdownMenu">
+                    <ul nz-menu>
+                        <li nz-menu-item>
+                            <i class="mr-3" nz-icon nzType="setting" nzTheme="outline"></i>
+                            Cài đặt
+                        </li>
+                        <li nz-menu-item (click)="logout()">
+                            <i nz-icon nzType="logout" nzTheme="outline"></i>
+                            Đăng xuất
+                        </li>
+                    </ul>
+                </nz-dropdown-menu>
+            </li>
+        </ul>
+    </div>
 </nz-header>
 
 <nz-layout class="custom-layout">
-  <nz-sider class="custom-sidebar" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
-    <ul nz-menu nzMode="inline" class="border-0">
-      <ng-container *ngFor="let item of menuItems">
-        <li nz-menu-item [routerLink]="item.path" [nzMatchRouter]="true" class="w-full outline-none">
-          <i nz-icon [nzType]="item.icon"></i>
-          <span>{{ item.label }}</span>
-        </li>
-      </ng-container>
-    </ul>
-  </nz-sider>
+    <nz-sider class="custom-sidebar" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <ul nz-menu nzMode="inline" class="border-0">
+            <ng-container *ngFor="let item of menuItems">
+                <li nz-menu-item [routerLink]="item.path" [nzMatchRouter]="true" class="w-full outline-none">
+                    <i nz-icon [nzType]="item.icon"></i>
+                    <span>{{ item.label }}</span>
+                </li>
+            </ng-container>
+        </ul>
+    </nz-sider>
 
-  <nz-content class="custom-content">
-    <div class="custom-router-container">
-      <router-outlet></router-outlet>
-    </div>
-    <nz-footer class="custom-footer">Ant Design ©2020 Implement By Angular</nz-footer>
-  </nz-content>
+    <nz-content class="custom-content">
+        <div class="custom-router-container">
+            <router-outlet></router-outlet>
+        </div>
+        <nz-footer class="custom-footer">Ant Design ©2020 Implement By Angular</nz-footer>
+    </nz-content>
 </nz-layout>

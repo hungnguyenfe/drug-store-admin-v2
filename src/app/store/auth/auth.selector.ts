@@ -7,4 +7,5 @@ export const AuthSelectors = {
   SelectLoading: createSelector(getAuthState, (state) => state.loading),
   SelectIsLogged: createSelector(getAuthState, (state) => state.isLogged),
   SelectAccount: createSelector(getAuthState, (state) => state.account),
+  SelectWorkspaceId: createSelector(getAuthState, (state) => state.workspaceId),
 }

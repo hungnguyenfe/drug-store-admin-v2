@@ -44,6 +44,7 @@ export class AuthService {
     return {
       email: data?.email,
       username: data?.username,
+      exp: data?.exp,
     }
   }
 
@@ -56,15 +57,6 @@ export class AuthService {
   }
 
   public login(data: LoginPayload): Observable<LoginResponse> {
-    const {username, password} = data
-    if (username === 'admin' && password === 'hungnguyen123') {
-      return of({
-        token: 'this is token',
-        workspaceId: 'this is workspace id',
-      })
-    } else {
-      return throwError('Invalid username or password')
-    }
-    return this.http.get('login', data)
+    return this.http.post('api-token-auth/', data)
   }
 }

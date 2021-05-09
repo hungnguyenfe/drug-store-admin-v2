@@ -26,11 +26,7 @@ export class AuthEffect {
       if (!storeData) {
         return []
       }
-      const tokenData = this.authService.decodeToken(storeData.token) || {
-        exp: new Date('2029/12/31').getTime() / 1000,
-        username: 'admin',
-        email: 'hung.nguyen14fe@gmail.com',
-      }
+      const tokenData = this.authService.decodeToken(storeData.token)
       const isValidate = this.authService.isValidData(tokenData)
 
       if (isValidate) {
@@ -40,6 +36,9 @@ export class AuthEffect {
           }),
           AuthActions.SetAccount({
             account: this.authService.buildAccountData(tokenData),
+          }),
+          AuthActions.SetWorkspaceId({
+            workspaceId: storeData.work_space_id,
           }),
         ]
       } else {
@@ -62,22 +61,27 @@ export class AuthEffect {
 
         //  Build account data
         const tokenData = this.authService.decodeToken(response.token)
-        return this.authService.buildAccountData(tokenData)
+        return {
+          account: this.authService.buildAccountData(tokenData) as Account,
+          workspaceId: response.work_space_id,
+        }
       }),
       // Dispatch actions Set status and Account data into store
-      map((account: Account) => [
+      map((mapData) => [
           AuthActions.SetLoggedStatus({isLogged: true}),
-          AuthActions.SetAccount({account}),
+          AuthActions.SetAccount({ account: mapData.account }),
+          AuthActions.SetWorkspaceId({ workspaceId: mapData.workspaceId }),
         ],
       ),
       mergeAll(),
       // Redirect to Core module
       tap(() => this.navigateToCoreModule()),
       // Catch error
-      catchError((error) => {
+      catchError((resErr) => {
+        console.error(resErr)
         const variant: MessageVariant = {
           type: 'error',
-          message: error,
+          message: 'Sai tên đăng nhập hoặc mật khẩu',
         }
         return of(MessageActions.SetMessageVariant({variant}))
       }),
@@ -97,8 +101,11 @@ export class AuthEffect {
     ]),
     mergeAll(),
     // Redirect to auth page
-    tap(() => this.navigateToAuthModule()),
-  ))
+    tap(() => {
+      this.authService.localStoreData = null
+      this.navigateToAuthModule()
+    })),
+  )
 
   constructor(
     private readonly action$: Actions,
@@ -132,4 +139,7 @@ export class AuthEffect {
     this.store.dispatch(AuthActions.EffectLogin({data}))
   }
 
+  public logout(): void {
+    this.store.dispatch(AuthActions.EffectLogout())
+  }
 }

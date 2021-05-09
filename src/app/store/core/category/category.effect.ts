@@ -14,14 +14,14 @@ import { Category } from '@app-types/category.types'
 @Injectable()
 export class CategoryEffect {
   private readonly data$ = this.store.select(CategorySelectors.GetData)
-  private readonly total$ = this.store.select(CategorySelectors.GetTotal)
+  private readonly count$ = this.store.select(CategorySelectors.GetCount)
   private readonly loading$ = this.store.select(CategorySelectors.GetLoading)
 
   private readonly effectGetData$ = createEffect(() => this.actions$.pipe(
     ofType(CategoryActionTypes.EffectGetData),
     tap(() => this.store.dispatch(CategoryActions.SetLoading({loading: true}))),
     switchMap(({params}) => this.categoryService.getCategories(params).pipe(
-      map(({data, count}) => CategoryActions.SetDataResponse({data, total: count})),
+      map(({data, count}) => CategoryActions.SetDataResponse({data, count})),
       catchError(() => {
         const variant: MessageVariant = {
           type: 'error',
@@ -29,7 +29,7 @@ export class CategoryEffect {
         }
         return of(
           MessageActions.SetMessageVariant({variant}),
-          CategoryActions.SetDataResponse({data: [], total: 0}),
+          CategoryActions.SetDataResponse({data: [], count: 0}),
         )
       }),
       finalize(() => this.store.dispatch(CategoryActions.SetLoading({loading: false}))),
@@ -47,8 +47,8 @@ export class CategoryEffect {
     return this.data$
   }
 
-  public get total(): Observable<number> {
-    return this.total$
+  public get count(): Observable<number> {
+    return this.count$
   }
 
   public get loading(): Observable<boolean> {

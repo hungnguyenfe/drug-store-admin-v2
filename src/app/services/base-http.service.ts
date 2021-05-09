@@ -7,34 +7,36 @@ import { Observable } from 'rxjs'
   providedIn: 'root',
 })
 export class BaseHttpService {
-  private readonly baseURL: string
+  private readonly baseUrl: string
+  private readonly versionAPI: string
 
   constructor(
     private http: HttpClient,
   ) {
-    this.baseURL = environment.baseUrl
+    this.baseUrl = environment.baseUrl
+    this.versionAPI = environment.versionAPI
   }
 
   public get<K>(path: string, params: any): Observable<K> {
-    return this.http.get<K>(`${this.baseURL}/${path}`, {
+    return this.http.get<K>(`${this.baseUrl}${this.versionAPI}/${path}/`, {
       params,
     })
   }
 
   public post<T, K>(path: string, data: T): Observable<K> {
-    return this.http.post<K>(`${this.baseURL}/${path}`, data)
+    return this.http.post<K>(`${this.baseUrl}${this.versionAPI}/${path}/`, data)
   }
 
   public patch<T, K>(path: string, data: T): Observable<K> {
-    return this.http.patch<K>(`${this.baseURL}/${path}`, data)
+    return this.http.patch<K>(`${this.baseUrl}${this.versionAPI}/${path}/`, data)
   }
 
   public put<T, K>(path: string, data: T): Observable<K> {
-    return this.http.put<K>(`${this.baseURL}/${path}`, data)
+    return this.http.put<K>(`${this.baseUrl}${this.versionAPI}/${path}/`, data)
   }
 
   public delete<K = boolean>(path: string, params: any): Observable<K> {
-    return this.http.delete<K>(`${this.baseURL}/${path}`, {
+    return this.http.delete<K>(`${this.baseUrl}${this.versionAPI}/${path}/`, {
       params,
     })
   }

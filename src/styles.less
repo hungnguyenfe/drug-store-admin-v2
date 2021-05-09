@@ -14,10 +14,15 @@
     @apply relative pt-3;
 
     .custom-card-title {
-      @apply absolute bg-primary w-auto p-2 rounded-md -top-4 left-3 shadow-lg;
-       > * {
-         @apply mb-0 text-white;
-       }
+      @apply absolute w-auto -top-4 left-3 shadow-lg overflow-hidden;
+
+      .custom-action {
+        @apply rounded-md;
+
+        &.ant-btn-primary[disabled] {
+          @apply bg-primary text-white opacity-75;
+        }
+      }
     }
   }
 }
