@@ -1,39 +1,35 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+# This is a basic workflow to help you get started with Actions
 
-# This workflow will install Deno and run tests across stable and nightly builds on Windows, Ubuntu and macOS.
-# For more information see: https://github.com/denolib/setup-deno
+name: CI
 
-name: Deno
-
+# Controls when the action will run.
 on:
+  # Triggers the workflow on push or pull request events but only for the deploy/dev branch
   push:
-    branches: [main]
+    branches: [ deploy/dev ]
   pull_request:
-    branches: [main]
+    branches: [ deploy/dev ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test:
-    runs-on: ${{ matrix.os }} # runs a test on Ubuntu, Windows and macOS
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        deno: ["v1.x", "nightly"]
-        os: [macOS-latest, windows-latest, ubuntu-latest]
-
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Setup repo
-        uses: actions/checkout@v2
-
-      - name: Setup Deno
-        uses: denolib/setup-deno@c7d7968ad4a59c159a777f79adddad6872ee8d96
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
         with:
-          deno-version: ${{ matrix.deno }} # tests across multiple Deno versions
-
-      - name: Cache Dependencies
-        run: deno cache deps.ts
-
-      - name: Run Tests
-        run: deno test -A --unstable
+          ref: ${{ github.head_ref }}
+      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        run: |
+          yarn
+          git config --global user.email ${{secrets.MY_DEPLOY_SECRET_EMAIL}}
+          git config --global user.name ${{secrets.MY_DEPLOY_SECRET_NAME}}
+          git remote set-url origin https://${{secrets.MY_DEPLOY_SECRET}}@github.com/hungnguyen14fe/drug-store-admin-v2.git
+          npm run build-deploy
