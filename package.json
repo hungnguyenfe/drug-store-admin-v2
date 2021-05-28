@@ -1,6 +1,7 @@
 {
   "name": "drug-store-admin-v2",
   "version": "0.0.0",
+  "homepage": "http://hungnguyenfe.github.io/drug-store-admin-v2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
