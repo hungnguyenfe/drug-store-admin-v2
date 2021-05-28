@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://192.168.1.224:8000/',
+  baseUrl: 'http://api.pres.asia/',
   versionAPI: 'v1',
 }
 

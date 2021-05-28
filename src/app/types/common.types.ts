@@ -24,7 +24,8 @@ export interface TableParams {
 }
 
 export interface DataTableResponse<T> {
-  data: T[]
+  results: T[]
   count: number
-  page: number
+  next: number | null
+  previous: number | null
 }

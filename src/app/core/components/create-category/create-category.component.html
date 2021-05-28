@@ -1,0 +1,15 @@
+<h3>Tạo loại sản phẩm</h3>
+<form class="custom-ant-form" nz-form nzLayout="vertical" [formGroup]="categoryForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="name">Tên</nz-form-label>
+    <nz-form-control nzErrorTip="Bạn chưa nhập tên">
+      <nz-input-group>
+        <input formControlName="name" nz-input placeholder="Tên loại thuốc" id="name"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item class="custom-form-item-inline">
+    <button [nzLoading]="isLoading |  async" nz-button type="submit" nzType="primary">Thêm mới</button>
+    <button [disabled]="isLoading |  async" nz-button type="button" (click)="closeModal()">Huỷ</button>
+  </nz-form-item>
+</form>

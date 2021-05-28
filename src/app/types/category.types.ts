@@ -1,5 +1,8 @@
 export interface Category {
-  id: string | number
+  id: string
+  ratio: string
+  created: string
+  modified: string
   name: string
 }
 

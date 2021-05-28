@@ -12,7 +12,6 @@ export const makeAllAsDirty = (form: FormGroup): void => {
 }
 
 export const transformNzParamsToTableParams = (params: NzTableQueryParams): Partial<TableParams> => {
-  console.log(params)
   const {pageIndex, pageSize, filter} = params
   return {
     page: pageIndex,

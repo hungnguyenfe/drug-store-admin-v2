@@ -1,35 +1,42 @@
 <nz-card class="custom-ant-card --with-shadow --with-tittle">
-    <div class="custom-card-title">
-        <button nz-button
-                nzType="primary"
-                class="custom-action"
-                [disabled]="loading$ | async"
-                [nzLoading]="loading$ | async">
-            <i nz-icon nzType="plus" nzTheme="outline"></i>
-            Tạo mới
-        </button>
-    </div>
-
-    <nz-table
-            [nzBordered]="true"
+  <div class="custom-card-title">
+    <button nz-button
+            nzType="primary"
+            class="custom-action"
+            [disabled]="loading$ | async"
             [nzLoading]="loading$ | async"
-            [nzTotal]="count$ | async"
-            [nzFrontPagination]="false"
-            [nzPageSize]="pageSize"
-            [nzPageIndex]="pageIndex"
-            [nzPageSizeOptions]="pageSizeOptions"
-            (nzQueryParams)="paramsChange($event)">
-        <thead>
-        <tr>
-            <th>Tên loại sản phẩm</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let category of (categories$ | async)">
-            <td>{{ category.name }}</td>
-            <td></td>
-        </tr>
-        </tbody>
-    </nz-table>
+            (click)="openCreateCategoryModal()">
+      <i nz-icon nzType="plus" nzTheme="outline"></i>
+      Tạo mới
+    </button>
+  </div>
+
+  <nz-table
+      #tableData
+      [nzBordered]="true"
+      [nzData]="categories$ | async"
+      [nzLoading]="loading$ | async"
+      [nzTotal]="count$ | async"
+      [nzFrontPagination]="false"
+      [nzPageSizeOptions]="pageSizeOptions"
+      [(nzPageSize)]="pageSize"
+      [(nzPageIndex)]="pageIndex"
+      (nzQueryParams)="paramsChange($event)">
+    <thead>
+    <tr>
+      <th>Tên loại sản phẩm</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let category of (categories$ | async)">
+      <td>{{ category.name }}</td>
+      <td class="w-28 text-center">
+        <button nz-button nzType="primary" class="mr-1" (click)="openUpdateCategoryModal(category.id)">
+          <i nz-icon nzType="edit" nzTheme="outline"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
 </nz-card>

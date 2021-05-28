@@ -8,6 +8,10 @@ export const CategorySelectors = {
     coreStateSelector,
     (state: CoreState) => state.category.data,
   ),
+  GetCurrentData: createSelector(
+    coreStateSelector,
+    (state: CoreState) => state.category.currentData,
+  ),
   GetLoading: createSelector(
     coreStateSelector,
     (state: CoreState) => state.category.loading,
@@ -15,5 +19,13 @@ export const CategorySelectors = {
   GetCount: createSelector(
     coreStateSelector,
     (state: CoreState) => state.category.count,
+  ),
+  GetLoadingCreate: createSelector(
+    coreStateSelector,
+    (state: CoreState) => state.category.createLoading,
+  ),
+  GetLoadingUpdate: createSelector(
+    coreStateSelector,
+    (state: CoreState) => state.category.updateLoading,
   ),
 }

@@ -1,0 +1,24 @@
+<h3>Cập nhật loại sản phẩm</h3>
+<nz-spin [nzSpinning]="isLoading | async" [nzIndicator]="indicatorTemplate" [ngClass]="{ 'mb-5': !categoryForm }">
+  <ng-container *ngIf="categoryForm">
+    <form class="custom-ant-form" nz-form nzLayout="vertical" [formGroup]="categoryForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="name">Tên</nz-form-label>
+        <nz-form-control nzErrorTip="Bạn chưa nhập tên">
+          <nz-input-group>
+            <input formControlName="name" nz-input placeholder="Tên loại thuốc" id="name"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="custom-form-item-inline">
+        <button [disabled]="isLoading | async" nz-button type="submit" nzType="primary">Cập nhật</button>
+        <button [disabled]="isLoading |  async" nz-button type="button" (click)="closeModal()">Huỷ</button>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-spin>
+
+<ng-template #indicatorTemplate>
+  <i nz-icon nzType="loading"></i>
+</ng-template>
+

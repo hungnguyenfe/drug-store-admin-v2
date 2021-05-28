@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
 
   createForm(): FormGroup {
     return this.formBuilder.group({
-      username: ['admin', Validators.required],
-      password: ['hungnguyen12345', Validators.required],
+      username: ['vnhd_test_1', Validators.required],
+      password: ['hdwebsoft', Validators.required],
     })
   }
 

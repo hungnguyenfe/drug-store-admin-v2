@@ -29,7 +29,6 @@ export class BaseInterceptor implements HttpInterceptor {
 
     return next.handle(newRequest)
       .pipe(
-        delay(2000),
         tap((response) => {
           // handle before return to service
           return response

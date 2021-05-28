@@ -17,6 +17,13 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar'
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
 import { NzBadgeModule } from 'ng-zorro-antd/badge'
 import { NzButtonModule } from 'ng-zorro-antd/button'
+import { CreateCategoryComponent } from './components/create-category/create-category.component'
+import { NzModalModule } from 'ng-zorro-antd/modal'
+import { NzFormModule } from 'ng-zorro-antd/form'
+import { ReactiveFormsModule } from '@angular/forms'
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { UpdateCategoryComponent } from './components/update-category/update-category.component'
+import { NzSpinModule } from 'ng-zorro-antd/spin'
 
 const antModules = [
   NzLayoutModule,
@@ -28,6 +35,10 @@ const antModules = [
   NzDropDownModule,
   NzBadgeModule,
   NzButtonModule,
+  NzModalModule,
+  NzFormModule,
+  NzInputModule,
+  NzSpinModule,
 ]
 
 @NgModule({
@@ -35,10 +46,13 @@ const antModules = [
     DashboardComponent,
     LayoutComponent,
     CategoryComponent,
+    CreateCategoryComponent,
+    UpdateCategoryComponent,
   ],
   imports: [
     CommonModule,
     CoreRoutingModule,
+    ReactiveFormsModule,
     StoreModule.forFeature(CORE_KEY, CoreReducer),
     EffectsModule.forFeature([CategoryEffect]),
     ...antModules,

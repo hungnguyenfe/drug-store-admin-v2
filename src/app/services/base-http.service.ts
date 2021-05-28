@@ -17,7 +17,7 @@ export class BaseHttpService {
     this.versionAPI = environment.versionAPI
   }
 
-  public get<K>(path: string, params: any): Observable<K> {
+  public get<K>(path: string, params: any = {}): Observable<K> {
     return this.http.get<K>(`${this.baseUrl}${this.versionAPI}/${path}/`, {
       params,
     })
